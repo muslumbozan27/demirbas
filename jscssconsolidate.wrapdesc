@@ -1,0 +1,4 @@
+﻿name: jscssconsolidate
+build: msbuild;profile=net35;profile=net40
+depends: openwrap
+depends: nunit
