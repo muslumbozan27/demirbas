@@ -1,0 +1,8 @@
+﻿
+relre:bin/(Debug|Release)/.+
+relre:obj/(Debug|Release)/.+
+glob:*.user
+glob:*.suo
+glob:*.cache
+relre:samples/LessIntegration/bin/.+
+relre:Website/[Bb]in/.+
