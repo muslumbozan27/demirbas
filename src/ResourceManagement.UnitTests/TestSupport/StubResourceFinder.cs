@@ -1,0 +1,39 @@
+using System;
+using System.Linq;
+
+namespace AlmWitt.Web.ResourceManagement.TestSupport
+{
+    public class StubResourceFinder : IResourceFinder
+    {
+        private readonly ResourceCollection _resources = new ResourceCollection();
+        
+        public void AddResource(IResource resource)
+        {
+        	_resources.Add(resource);
+        }
+		
+		public void AddResource(string virtualPath, string content)
+        {
+            StubResource resource = new StubResource(content);
+            resource.VirtualPath = virtualPath;
+            _resources.Add(resource);
+        }
+
+    	public void AddResources(params IResource[] resources)
+    	{
+    		_resources.AddRange(resources);
+    	}
+
+    	public ResourceCollection Resources { get { return _resources; } }
+
+    	public ResourceCollection FindResources(ResourceType resourceType)
+    	{
+    		return _resources;
+    	}
+
+    	public IResource FindResource(string virtualPath)
+    	{
+    		return _resources.Where(r => r.VirtualPath != null && r.VirtualPath.Equals(virtualPath, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+    	}
+    }
+}
